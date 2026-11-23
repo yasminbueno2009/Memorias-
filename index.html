@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Memórias escolares e portfólio de redações de um formando do Ensino Médio.">
+  <title>Minha Jornada Escolar 🎀</title>
+
+  <!-- Fontes fofinhas (Google Fonts) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+  <script>document.documentElement.classList.add('js');</script>
+</head>
+<body>
+
+  <a class="pular" href="#memorias">Pular para o conteúdo</a>
+
+  <!-- ===== MENU ===== -->
+  <header class="topo">
+    <nav class="menu" aria-label="Navegação principal">
+      <a href="#inicio" class="menu__logo">🎀 <span>Minha Jornada</span></a>
+      <ul class="menu__links">
+        <li><a href="#memorias">Memórias</a></li>
+        <li><a href="#portfolio">Redações</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+
+    <!-- ===== INÍCIO ===== -->
+    <section id="inicio" class="hero">
+      <span class="flutuante f1" aria-hidden="true">☁️</span>
+      <span class="flutuante f2" aria-hidden="true">⭐</span>
+      <span class="flutuante f3" aria-hidden="true">🌷</span>
+      <span class="flutuante f4" aria-hidden="true">✨</span>
+      <span class="flutuante f5" aria-hidden="true">📚</span>
+
+      <div class="hero__caixa">
+        <p class="hero__selo">Turma de formandos 2026 🎓</p>
+        <h1>Minha jornada<br>na escola</h1>
+        <!-- ✏️ EDITE AQUI: seu nome, escola e turma -->
+        <p class="hero__nome">por <strong>Seu Nome Aqui</strong></p>
+        <p class="hero__sub">
+          Do primeiro dia de aula até o último, aqui estão minhas memórias,
+          meus tropeços, minhas risadas e as palavras que escrevi pelo caminho.
+        </p>
+        <div class="hero__botoes">
+          <a class="btn btn--principal" href="#memorias">Ver minhas memórias 🧸</a>
+          <a class="btn btn--suave" href="#portfolio">Ler minhas redações ✏️</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== TEMÁTICA 1: MEMÓRIAS ESCOLARES ===== -->
+    <section id="memorias" class="secao">
+      <header class="secao__cab">
+        <span class="secao__emoji" aria-hidden="true">📸</span>
+        <h2>Memórias Escolares</h2>
+        <p>Uma viagem no tempo: do Jardim de Infância até a conclusão do 3º ano do Ensino Médio.</p>
+      </header>
+
+      <!-- trilha de atalhos (gerada pelo JS) -->
+      <nav class="trilha" id="trilha" aria-label="Etapas da vida escolar"></nav>
+
+      <!-- linha do tempo (gerada pelo JS) -->
+      <div class="timeline" id="timeline"></div>
+    </section>
+
+    <!-- ===== TEMÁTICA 2: PORTFÓLIO DE REDAÇÕES ===== -->
+    <section id="portfolio" class="secao secao--lilas">
+      <header class="secao__cab">
+        <span class="secao__emoji" aria-hidden="true">📖</span>
+        <h2>Portfólio de Redações</h2>
+        <p>As 17 produções que escrevi nas aulas de Língua Portuguesa e Redação. Escolha como quer ler!</p>
+      </header>
+
+      <div class="ferramentas">
+        <label class="campo campo--busca">
+          <span class="sr-only">Buscar redação</span>
+          <input type="search" id="busca" placeholder="🔍 Buscar por título ou tema…" autocomplete="off">
+        </label>
+
+        <label class="campo">
+          <span class="sr-only">Filtrar por gênero</span>
+          <select id="filtroGenero">
+            <option value="todos">Todos os gêneros</option>
+          </select>
+        </label>
+
+        <div class="alternar" role="group" aria-label="Modo de leitura">
+          <button type="button" class="alternar__btn ativo" data-modo="cards" aria-pressed="true">🃏 Cards</button>
+          <button type="button" class="alternar__btn" data-modo="acordeao" aria-pressed="false">📜 Sanfona</button>
+        </div>
+      </div>
+
+      <p class="contagem" id="contagem" aria-live="polite"></p>
+
+      <div class="grade-red" id="gradeRedacoes"></div>
+      <div class="acord" id="acordeao" hidden></div>
+
+      <p class="vazio" id="vazio" hidden>Nenhuma redação encontrada 🥺 Tente outra palavra!</p>
+    </section>
+
+  </main>
+
+  <footer class="rodape">
+    <p>Feito com 💖 e muitas lembranças · Formandos 2026</p>
+    <a href="#inicio" class="rodape__topo">Voltar ao topo ↑</a>
+  </footer>
+
+  <button type="button" class="subir" id="subir" aria-label="Voltar ao topo" hidden>↑</button>
+
+  <!-- ===== JANELA MODAL (leitor de redação) ===== -->
+  <div class="modal" id="modal" hidden>
+    <div class="modal__fundo" data-fechar></div>
+
+    <div class="modal__caixa" role="dialog" aria-modal="true" aria-labelledby="modalTitulo">
+      <div class="modal__topo">
+        <span class="chip" id="modalGenero"></span>
+        <div class="modal__ferramentas">
+          <button type="button" class="icone" id="fonteMenos" aria-label="Diminuir letra">A−</button>
+          <button type="button" class="icone" id="fonteMais" aria-label="Aumentar letra">A+</button>
+          <button type="button" class="icone icone--fechar" id="modalFechar" data-fechar aria-label="Fechar">✕</button>
+        </div>
+      </div>
+
+      <div class="modal__corpo" id="modalCorpo">
+        <p class="modal__num" id="modalNum"></p>
+        <h3 id="modalTitulo"></h3>
+        <p class="modal__meta" id="modalMeta"></p>
+        <div class="texto-redacao" id="modalTexto"></div>
+      </div>
+
+      <div class="modal__rodape">
+        <button type="button" class="btn btn--suave" id="modalAnterior">← Anterior</button>
+        <span id="modalPosicao" class="modal__pos"></span>
+        <button type="button" class="btn btn--suave" id="modalProxima">Próxima →</button>
+      </div>
+    </div>
+  </div>
+
+  <noscript>
+    <p style="text-align:center;padding:2rem">Ative o JavaScript para ver as memórias e as redações 💕</p>
+  </noscript>
+
+  <script src="script.js"></script>
+</body>
+</html>
